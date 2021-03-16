@@ -33,75 +33,29 @@ export default {
     </transition-group>
   </div>
   <div class="sideBox">
-    <table>
-      <tr>
-        <td class="title" colspan="4">Open data visualization</td>
-      </tr>
-      <tr>
-        <td class="subTitle">Data visualise</td>
-        <td class="tar">03/2020-05/2020</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="tal" colspan="3">
-          Use Portege to build ontology schema.
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="tal" colspan="3">
-          Convert open data to sematic data.
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="tal" colspan="3">
-          Use JavaScript and D3 to visualise
-        </td>
-      </tr>
-      <tr>
-        <td class="subTitle">Key Tech</td>
-        <td class="tal" colspan="3">
-          Front-end website, JavaScript, C#, ASP.NET
-        </td>
-      </tr>
-    </table>
+    <div class="contentBox">
+      <h3 class="title">Open data visualization</h3>
+      <h4 class="subTitle tal">Data visualise</h4>
+      <p class="tar">03/2020-05/2020</p>
+      <li>Use Portege to build ontology schema.</li>
+      <li>Convert open data to sematic data.</li>
+      <li>Use JavaScript and D3 to visualise.</li>
+      <h4 class="subTitle key">Key Tech</h4>
+      <h5 class="keyCon">HTML, CSS, Javascript, D3.js</h5>
+    </div>
   </div>
   <div class="empty"></div>
   <div class="sideBox">
-    <table>
-      <tr>
-        <td class="title" colspan="4">Barbershop website</td>
-      </tr>
-      <tr>
-        <td class="subTitle">Front-end developer</td>
-        <td class="tar">09/2019-12/2019</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="tal" colspan="3">
-          Use ASP.NET framework to build the website.
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="tal" colspan="3">
-          Maintain the administrator CRUD pages.
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="tal" colspan="3">
-          Constrain the reservation date without past date by JavaScript
-        </td>
-      </tr>
-      <tr>
-        <td class="subTitle">Key Tech</td>
-        <td class="tal" colspan="3">
-          Front-end website, JavaScript, C#, ASP.NET
-        </td>
-      </tr>
-    </table>
+    <div class="contentBox">
+      <h3 class="title">Barbershop website</h3>
+      <h4 class="subTitle tal">Front-end developer</h4>
+      <p class="tar">09/2019-12/2019</p>
+      <li>Use ASP.NET framework to build the website.</li>
+      <li>Maintain the administrator CRUD pages.</li>
+      <li>Constrain the reservation date without past date by JavaScript.</li>
+      <h4 class="subTitle key">Key Tech</h4>
+      <h5 class="keyCon">Front-end website, JavaScript, C#, ASP.NET</h5>
+    </div>
   </div>
   <div class="sideBox">
     <a class="sideBoxLink" href="javascript;:">
@@ -138,6 +92,40 @@ export default {
   width: 40%;
   margin: 0 5% 0 5%;
   float: left;
+  > .contentBox {
+    width: 100%;
+    >.title {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    >.subTitle {
+      font-weight: bold;
+    }
+    > li{
+      width: 100%;
+      float: left;
+      text-align: left;
+      padding-left: 5%;
+    }
+    >.tar {
+      float: right;
+      width: 50%;
+    }
+    >.tal {
+      float: left;
+      width: 50%;
+      text-align: left;
+    }
+    >.key{
+      float: left;
+      width: 30%;
+      text-align-last: left;
+    }
+    .keyCon{
+      float: left;
+      width: 70%;
+    }
+  }
   > .sideBoxLink {
     display: block;
     width: 100%;
@@ -147,28 +135,5 @@ export default {
       margin: 10% 40% 0px 40%;
     }
   }
-  > table {
-    width: 100%;
-    margin-top: 50px;
-    > tr {
-      > td &.title {
-        font-weight: bold;
-        font-size: 1.5rem;
-      }
-    }
-  }
-}
-.title {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-.subTitle {
-  font-weight: bold;
-}
-.tar {
-  text-align: right;
-}
-.tal {
-  text-align: left;
 }
 </style>
