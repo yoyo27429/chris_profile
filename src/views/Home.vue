@@ -15,7 +15,8 @@ export default {
 
 <template>
   <div class="box" :style="{ height: domH }">
-    <h1 id="welcome">Hello! I'm Chris Lo</h1>
+    <h1 id="welcome">Chris Lo</h1>
+    <img class="bannerIMG" src="@/assets/me2.jpg" alt="">
   </div>
 </template>
 
@@ -26,14 +27,23 @@ export default {
 .box {
   display: block;
   width: 100%;
-  background-image: url("~@/assets/bgc.jpg");
-  background-size: cover;
+  background-color: #256087;
+  position: relative;
   > #welcome{
-    position: fixed;
-    top: 30%;
-    left: 5%;
+    position: absolute;
+    top: 40%;
+    left: 10%;
     font-size: 5rem;
-    color: antiquewhite;
+    color: #FFAC87;
+    z-index: 1000;
+    font-weight:bolder;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  >.bannerIMG{
+    height: 80%;
+    position: absolute;
+    top: 5%;
+    right: 5%;
   }
 }
 </style>

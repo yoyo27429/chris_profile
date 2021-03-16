@@ -1,14 +1,18 @@
 <script>
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   components: {
-    Header,
+    Header,Footer,
   },
 };
 </script>
 <template>
   <Header />
-  <router-view />
+  <div class="viewBox">
+    <router-view />
+  </div>
+  <Footer />
 </template>
 
 <style lang="scss">
@@ -22,6 +26,12 @@ export default {
 * {
   padding: 0px;
   margin: 0px;
-
+}
+.viewBox{
+  margin-top: 60px;
+  width: 90%;
+  margin-left: 5%;
+  background-color: #fff;
+  // margin-bottom: 60px;
 }
 </style>
