@@ -5,7 +5,7 @@ export default {
   components: {},
   setup() {
     const domH = computed(() => {
-      return `${window.innerHeight}px`;
+      return `${window.innerHeight-120}px`;
     });
     console.log(domH);
     return { domH };

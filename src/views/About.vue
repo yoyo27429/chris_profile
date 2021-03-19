@@ -1,7 +1,7 @@
 <script>
 import Education from "@/components/About/Education.vue";
 import Work from "@/components/About/Work.vue";
-import AboutMe from "@/components/About/AboutMe.vue"
+import AboutMe from "@/components/About/AboutMe.vue";
 export default {
   components: {
     Education,
@@ -13,14 +13,14 @@ export default {
 
 <template>
   <div class="container">
-    <div class="box">
+    <div class="box bg1">
       <AboutMe />
     </div>
-    <div class="box"></div>
-    <div class="box">
+    <!-- <div class="box"></div> -->
+    <div class="box bg2">
       <Education />
     </div>
-    <div class="box">
+    <div class="box bg3">
       <Work />
     </div>
   </div>
@@ -28,14 +28,24 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 164px;
+  margin-top: 60px;
   > .box {
     width: 90%;
-    margin: 50px 5% 50px 5%;
-    min-height: 150px;
+    padding: 5%;
+    // margin: 50px 5% 50px 5%;
+    min-height: 50px;
     display: block;
     // height: 100px;
-    // overflow: auto;
+    overflow: auto;
+  }
+  .bg1 {
+    background-color: #E98457;
+  }
+  .bg2 {
+    background-color: #FFAC87D3;
+  }
+  .bg3{
+    background-color: #D36330;
   }
 }
 </style>
