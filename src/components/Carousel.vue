@@ -1,5 +1,5 @@
 <script>
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 export default {
   setup() {
     const pkArr = [
@@ -47,8 +47,9 @@ export default {
       { name: 42, url: require("@/assets/Gallery/Pokemon/pkg42.jpg") },
       { name: 43, url: require("@/assets/Gallery/Pokemon/pkg43.jpg") },
     ];
-    const showIdx = ref([0, 1, 2, 3, 4]);
+    const showIdx = ref(0);
     const isLoad = ref(false);
+    const isShow = ref(true);
     const handImgLoad = (imgArr) => {
       let i = 0;
       imgArr.forEach((image) => {
@@ -63,21 +64,21 @@ export default {
     onMounted(() => {
       handImgLoad(pkArr);
     });
-    const previousImg = () => {
-      showIdx.value.push(showIdx[4].value + 1);
-      console.log(showIdx.value);
-      showIdx.value.unshift();
-      console.log(showIdx.value);
-      handImgLoad(pkArr);
-
-    };
+    const previousImg = () => {};
     const nextImg = () => {
-      showIdx.value.push(showIdx.value[4] + 1);
-      console.log(showIdx.value);
-      showIdx.value.shift();
-      console.log(showIdx.value);
+      if (showIdx.value >= pkArr.length - 5) {
+        return (showIdx.value = 0);
+      }
+      showIdx.value += 1;
     };
-    return { pkArr, showIdx, previousImg, nextImg, isLoad };
+    const timer = setInterval(() => {
+      nextImg();
+      console.log(showIdx.value);
+    }, 5000);
+    onUnmounted(()=>{
+      clearInterval(timer);
+    })
+    return { pkArr, showIdx, previousImg, nextImg, isLoad, isShow };
   },
 };
 </script>
@@ -88,22 +89,21 @@ export default {
     <img src="@/assets/load.gif" alt="" />
   </div>
   <div class="box" v-if="isLoad">
-    <img
-      :class="['imgList', { active: index in showIdx }]"
-      v-for="(item, index) in pkArr"
-      :key="item.name"
-      :src="item.url"
-    />
+    <img class="imgList" v-if="isShow" :src="pkArr[showIdx].url" alt="" />
+    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 1].url" alt="" />
+    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 2].url" alt="" />
+    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 3].url" alt="" />
+    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 4].url" alt="" />
   </div>
   <a class="controller" @click="nextImg">&gt;</a>
 </template>
 <style lang="scss" scoped>
-.controller{
-    display: block;
-    width: 0.5%;
-    float: left;
-    margin-top: 10%;
-    margin-left: 0.5%;
+.controller {
+  display: block;
+  width: 0.5%;
+  float: left;
+  margin-top: 10%;
+  margin-left: 0.5%;
 }
 #loadBox {
   width: 50%;
@@ -119,7 +119,7 @@ export default {
     width: 17.6%;
     margin-left: 2%;
     float: left;
-    display: none;
+    // display: none;
   }
   > .active {
     display: block;
