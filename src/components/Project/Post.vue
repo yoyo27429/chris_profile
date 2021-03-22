@@ -1,5 +1,5 @@
 <script>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onUnmounted } from "vue";
 export default {
   setup() {
     const imgArr = [
@@ -7,7 +7,24 @@ export default {
       { name: "d3_2", url: require("@/assets/Project_post/d3_2.jpg") },
       { name: "d3_3", url: require("@/assets/Project_post/d3_3.jpg") },
     ];
+    const appImg = [
+      { name: "app_1", url: require("@/assets/Project_post/app_1.png") },
+      { name: "app_2", url: require("@/assets/Project_post/app_2.png") },
+      { name: "app_3", url: require("@/assets/Project_post/app_3.png") },
+      { name: "app_4", url: require("@/assets/Project_post/app_4.png") },
+    ];
+    const showIdx = ref(0);
     const idx = ref(0);
+
+    const nextImg = () => {
+      if (showIdx.value >= appImg.length - 2) {
+        return (showIdx.value = 0);
+      }
+      showIdx.value += 1;
+    };
+    const timer = setInterval(() => {
+      nextImg();
+    }, 5000);
     onMounted(() => {
       setInterval(() => {
         if (idx.value > imgArr.length - 2) {
@@ -17,21 +34,22 @@ export default {
         }
       }, 3000);
     });
-    return { imgArr, idx };
+    onUnmounted(() => {
+      clearInterval(timer);
+    });
+    return { imgArr, idx, appImg, showIdx };
   },
 };
 </script>
 <template>
   <div class="container bgcOR">
     <div class="sideBox carousel">
-      <transition-group name="flip">
-        <img
-          v-for="(item, index) in imgArr"
-          :key="item.name"
-          :src="item.url"
-          v-show="idx === index"
-        />
-      </transition-group>
+      <img
+        v-for="(item, index) in imgArr"
+        :key="item.name"
+        :src="item.url"
+        v-show="idx === index"
+      />
     </div>
     <div class="sideBox">
       <div class="contentBox">
@@ -74,6 +92,25 @@ export default {
       >
     </div>
   </div>
+
+  <div class="container bgc3">
+    <div class="sideBox carousel">
+      <img class="appImg" :src="appImg[showIdx].url" alt="" />
+      <img class="appImg" :src="appImg[showIdx + 1].url" alt="" />
+    </div>
+    <div class="sideBox">
+      <div class="contentBox">
+        <h3 class="title">School App</h3>
+        <h4 class="subTitle tal">Mobile app developer</h4>
+        <p class="tar">03/2020-05/2020</p>
+        <li>Develop an android app by Kotlin.</li>
+        <li>SearchView and RecyclerView</li>
+        <li>Firebase data store</li>
+        <h4 class="subTitle key">Key Tech</h4>
+        <h5 class="keyCon">Kotlin, firebase</h5>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -94,12 +131,21 @@ export default {
   > img {
     width: 100%;
   }
+  > .appImg {
+    width: auto;
+    height: 200px;
+    float: left;
+    margin-right: 10px;
+  }
 }
 .bgcBL {
   background-color: #ffdd87;
 }
 .bgcOR {
   background-color: #e9be57;
+}
+.bgc3{
+  background-color: #AC8117;
 }
 .container {
   width: 95%;

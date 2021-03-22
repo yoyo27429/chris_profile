@@ -1,7 +1,35 @@
 <script>
 import Post from "@/components/Project/Post.vue";
 import Under from "@/components/Project/Under.vue";
+import { ref } from "@vue/reactivity";
+import { useRoute } from "vue-router";
+import { watch } from "@vue/runtime-core";
 export default {
+  setup() {
+    const routeIdx = ref(0);
+    const routeArr = ["post", "under"];
+    const route = useRoute();
+    watch(
+      () => route.path,
+      () => {
+        routeArr.forEach((item, index) => {
+          const rp = route.path.substr(1);
+          console.log("rp:", rp);
+
+          if (rp === "project") {
+            routeIdx.value = 0;
+            console.log("rp1:", rp, "index:", index);
+          } else {
+            if (rp.split("/")[1] === item) {
+              routeIdx.value = index;
+              console.log("rp:", rp, "index:", index);
+            }
+          }
+        });
+      }
+    );
+    return { routeIdx };
+  },
   components: {
     Post,
     Under,
@@ -10,35 +38,35 @@ export default {
 </script>
 <template>
   <div class="subNav">
-    <router-link to="/project/post">Postgraduated</router-link>
-    <router-link to="/project/under">Undergraduated</router-link>
+    <router-link :class="{ active: routeIdx === 0 }" to="/project/post"
+      >Postgraduated</router-link
+    >
+    <router-link :class="{ active: routeIdx === 1 }" to="/project/under"
+      >Undergraduated</router-link
+    >
   </div>
-  <!-- <div class="container"> -->
-    <router-view></router-view>
-  <!-- </div> -->
+  <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>
 .subNav {
-  width: 50%;
-  margin-left: 25%;
-  height: 100px;
-  margin-top: 100px;
+  width: 100%;
+  margin-top: 60px;
   > a {
     display: block;
-    width: 40%;
-    margin: 0px 5% 0px 5%;
+    width: 48%;
+    // margin: 0px % 0px 5%;
     text-decoration: none;
     font-size: 2rem;
     float: left;
     color: #d36330;
     font-weight: bold;
-    // background-color: #f7ab54;
+    padding: 1%;
+    border-radius: 2rem 2rem 0px 0px;
+  }
+  > .active {
+    border-top: #865f01 solid 2px;
+    background-color: #e9be57;
   }
 }
-// .container {
-//   width: 100%;
-//   background-color: #256087;
-//   overflow: auto;
-// }
 </style>
