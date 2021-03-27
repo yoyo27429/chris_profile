@@ -139,13 +139,13 @@ export default {
   }
 }
 .bgcBL {
-  background-color: #ffdd87;
+  background-color: #e0e1dd;
 }
 .bgcOR {
-  background-color: #e9be57;
+  background-color: #6183a8;
 }
 .bgc3{
-  background-color: #AC8117;
+  background-color: #778da9;
 }
 .container {
   width: 95%;

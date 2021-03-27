@@ -64,7 +64,13 @@ export default {
     onMounted(() => {
       handImgLoad(pkArr);
     });
-    const previousImg = () => {};
+    const previousImg = () => {
+      console.log(showIdx.value);
+      if(showIdx.value <= 0){
+        return (showIdx.value = 0)
+      }
+      showIdx.value -= 1;
+    };
     const nextImg = () => {
       if (showIdx.value >= pkArr.length - 5) {
         return (showIdx.value = 0);
@@ -89,11 +95,11 @@ export default {
     <img src="@/assets/load.gif" alt="" />
   </div>
   <div class="box" v-if="isLoad">
-    <img class="imgList" v-if="isShow" :src="pkArr[showIdx].url" alt="" />
-    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 1].url" alt="" />
-    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 2].url" alt="" />
-    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 3].url" alt="" />
-    <img class="imgList" v-if="isShow" :src="pkArr[showIdx + 4].url" alt="" />
+    <img class="imgList" :src="pkArr[showIdx].url" alt="" />
+    <img class="imgList" :src="pkArr[showIdx + 1].url" alt="" />
+    <img class="imgList" :src="pkArr[showIdx + 2].url" alt="" />
+    <img class="imgList" :src="pkArr[showIdx + 3].url" alt="" />
+    <img class="imgList" :src="pkArr[showIdx + 4].url" alt="" />
   </div>
   <a class="controller" @click="nextImg">&gt;</a>
 </template>

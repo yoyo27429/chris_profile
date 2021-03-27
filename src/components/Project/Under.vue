@@ -36,7 +36,7 @@ export default {};
 
 <style lang="scss" scoped>
 .bgcOR {
-  background-color: #e9be57;
+  background-color: #6183a8;
 }
 .container {
   width: 95%;
