@@ -59,14 +59,15 @@ export default {
     text-decoration: none;
     font-size: 2rem;
     float: left;
-    color: #d36330;
+    color: #063756;
     font-weight: bold;
     padding: 1%;
     border-radius: 2rem 2rem 0px 0px;
   }
   > .active {
     border-top: #865f01 solid 2px;
-    background-color: #e9be57;
+    background-color: #6183a8;
+    color: #e0e1dd;
   }
 }
 </style>

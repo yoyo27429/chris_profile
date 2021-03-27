@@ -27,14 +27,14 @@ export default {
 .box {
   display: block;
   width: 100%;
-  background-color: #256087;
+  background-color: #415a77;
   position: relative;
   > #welcome{
     position: absolute;
     top: 40%;
     left: 10%;
     font-size: 5rem;
-    color: #FFAC87;
+    color: #e0e1dd;
     z-index: 1000;
     font-weight:bolder;
     font-family: 'Trebuchet MS', sans-serif;
